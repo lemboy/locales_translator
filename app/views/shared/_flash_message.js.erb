@@ -1,0 +1,15 @@
+<% if !flash.empty? %>
+  <% flash.each do |key, value| %>
+    $( "#flash-message" ).html(""); 
+    $( "#flash-message" ).removeClass();
+    $( "#flash-message" ).addClass( "<%= "alert alert-#{key}" %>"  );
+    $( "#flash-message" ).html( "<%= j flash.discard(key) %>" );
+	<% end %>
+  setTimeout( function() { 
+    $( "#flash-message" ).html(""); 
+    $( "#flash-message" ).removeClass();
+  }, 30000 );
+<% else %>
+  $( "#flash-message" ).html(""); 
+  $( "#flash-message" ).removeClass();
+<% end %>

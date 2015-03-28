@@ -1,3 +1,12 @@
+function showPleaseWait(message) {
+  $( "#flash-message" ).addClass( "alert alert-info"  );
+  $( "#flash-message" ).html( message );
+};
+
+function hidePleaseWait() {
+  $( "#flash-message" ).html(""); 
+  $( "#flash-message" ).removeClass();
+};
 
 function updateAutoTranslateAbility() {
   var srcLang = $( '#src-lang' ).val().indexOf( "*" );
@@ -26,7 +35,17 @@ $( document ).ready( function() {
     if (translateIt) {
       var src_text = $( src_id ).val();
       var transl_dir = $( '#src-lang-code' ).val() + "-" + $( '#trgt-lang' ).find( 'option:selected' ).val();
-      $.ajax( "/translators/translate?tag_id=" + encodeURIComponent(trgt_id) + "&text=" + encodeURIComponent(src_text) + "&dir=" + transl_dir)
+      $.ajax({
+      	type: "GET",
+      	url: "/translators/translate?tag_id=" + encodeURIComponent(trgt_id) + "&text=" + encodeURIComponent(src_text) + "&dir=" + transl_dir,
+	      dataType: "script",
+        beforeSend: function(){
+					showPleaseWait("Translation in progress...");
+        },
+        success: function(data) {
+					hidePleaseWait();
+        }
+      });
     }
   });
 
@@ -45,13 +64,24 @@ $( document ).ready( function() {
       type: "POST",
       url: $("#transl-form").attr('action'),
       data: $("#transl-form").serialize(),
-      dataType: "script"
+      dataType: "script",
+      beforeSend: function(){
+				showPleaseWait("Translation in progress...");
+      },
+      success: function(data) {
+				hidePleaseWait();
+      }
     });
   });
+
+	$(document).on('submit','form#load-form',function(){
+  	showPleaseWait("File uploading process...");
+	});
   
-  $( "#load-form" ).bind('ajax:complete', function() {
+  $( "#load-form" ).bind('ajax:success', function() {
     updateAutoTranslateAbility();
     treeView();
+  	hidePleaseWait();
   });
 
   $( document ).on( 'change', '#trgt-lang',  function() {

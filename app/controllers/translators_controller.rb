@@ -7,19 +7,24 @@ class TranslatorsController < ApplicationController
   def upload_file
     src_file = params[:src_file].tempfile
     @src_file_name = params[:src_file].original_filename
+    ajax_status = 200
 
     begin
       @src_content = YAML.load src_file
     rescue Psych::SyntaxError => se
       src_file.close
       src_file.unlink
-      flash[:error] = "Invalid syntax of YML file: #{@src_file_name}"
+      flash[:danger] = "Invalid syntax of YML file: #{@src_file_name}"
+      ajax_status = 404
     end
 
-    flash[:error] = "Invalid YML file: #{@src_file_name}" unless !flash[:error].nil? || @src_content.class == Hash
-
+    if flash[:danger].nil? && @src_content.class != Hash
+      flash[:danger] = "Invalid YML file: #{@src_file_name}" 
+      ajax_status = 404
+    end
+    
     respond_to do |format|
-      format.js
+      format.js { render status: ajax_status }
       format.html { redirect_to root_path }
     end
   end
@@ -48,7 +53,7 @@ class TranslatorsController < ApplicationController
           end
         else
           @trgt_hash = nil
-          flash[:error] = "Translate error - #{trgt_text}"
+          flash[:danger] = "Translate error - #{trgt_text}"
         end
       end
     end
@@ -69,7 +74,7 @@ class TranslatorsController < ApplicationController
       @value_for_replace = trgt_text
     else
       @value_for_replace = ""
-      flash[:error] = "Translate error - #{trgt_text}"
+      flash[:danger] = "Translate error - #{trgt_text}"
     end
     
     respond_to do |format|
