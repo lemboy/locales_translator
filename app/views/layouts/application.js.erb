@@ -1,0 +1,13 @@
+<%= yield %>
+
+<% if !flash[:error].nil? %>
+  $( "#flash-message" ).addClass( "alert alert-danger" );
+  $( "#flash-message" ).html( "<%= j flash.discard(:error) %>" );
+  setTimeout( function() { 
+    $( "#flash-message" ).html(""); 
+    $( "#flash-message" ).removeClass( "alert alert-danger" );
+  }, 30000 );
+<% else %>
+  $( "#flash-message" ).html(""); 
+  $( "#flash-message" ).removeClass( "alert alert-danger" );
+<% end %>

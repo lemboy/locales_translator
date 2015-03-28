@@ -1,0 +1,5 @@
+<% if !@trgt_hash.nil? %>
+  <% @trgt_hash.each do |k, v| %>         
+    $( "<%= "#trgt-array-#{k}" %>" ).val("<%= j v %>");
+  <% end %>
+<% end %>

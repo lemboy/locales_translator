@@ -1,0 +1,361 @@
+locales:
+  af:
+    name: Afrikaans
+    hablaa_code: afr
+  ak:
+    name: Akan
+  sq:
+    name: Albanian
+    hablaa_code: sqi
+  am:
+    name: Amharic
+  ar:
+    name: Arabic
+    hablaa_code: ara
+  hy:
+    name: Armenian
+  az:
+    name: Azerbaijani
+  eu:
+    name: Basque
+    hablaa_code: eus
+  be:
+    name: Belarusian
+    hablaa_code: bel
+  bem:
+    name: Bemba
+  bn:
+    name: Bengali
+    hablaa_code: ben
+  bh:
+    name: Bihari
+  xx-bork:
+    name: Bork, bork, bork!
+  bs:
+    name: Bosnian
+    hablaa_code: bos
+  br:
+    name: Breton
+    hablaa_code: bre
+  bg:
+    name: Bulgarian
+    hablaa_code: bul
+  km:
+    name: Cambodian
+  ca:
+    name: Catalan
+    hablaa_code: cat
+  chr:
+    name: Cherokee
+  ny:
+    name: Chichewa
+  zh-CN:
+    name: Chinese (Simplified)
+    hablaa_code: zho
+  zh-TW:
+    name: Chinese (Traditional)
+    hablaa_code: chi
+  co:
+    name: Corsican
+  hr:
+    name: Croatian
+    hablaa_code: hrv
+  cs:
+    name: Czech
+    hablaa_code: ces
+  da:
+    name: Danish
+    hablaa_code: dan
+  nl:
+    name: Dutch
+    hablaa_code: nld
+  xx-elmer:
+    name: Elmer Fudd
+  en:
+    name: English
+    hablaa_code: eng
+  eo:
+    name: Esperanto
+    hablaa_code: epo
+  et:
+    name: Estonian
+    hablaa_code: est
+  ee:
+    name: Ewe
+  fo:
+    name: Faroese
+  tl:
+    name: Filipino
+    hablaa_code: fil
+  fi:
+    name: Finnish
+    hablaa_code: fin
+  fr:
+    name: French
+    hablaa_code: fra
+  fy:
+    name: Frisian
+  gaa:
+    name: Ga
+  gl:
+    name: Galician
+  ka:
+    name: Georgian
+  de:
+    name: German
+    hablaa_code: deu
+  el:
+    name: Greek
+    hablaa_code: ell
+  gn:
+    name: Guarani
+  gu:
+    name: Gujarati
+  xx-hacker:
+    name: Hacker
+  ht:
+    name: Haitian Creole
+  ha:
+    name: Hausa
+  haw:
+    name: Hawaiian
+  iw:
+    name: Hebrew
+    hablaa_code: heb
+  hi:
+    name: Hindi
+    hablaa_code: hin
+  hu:
+    name: Hungarian
+    hablaa_code: hun
+  is:
+    name: Icelandic
+    hablaa_code: isl
+  ig:
+    name: Igbo
+  id:
+    name: Indonesian
+    hablaa_code: ind
+  ia:
+    name: Interlingua
+  ga:
+    name: Irish
+    hablaa_code: gle
+  it:
+    name: Italian
+    hablaa_code: ita
+  ja:
+    name: Japanese
+    hablaa_code: jpn
+  jw:
+    name: Javanese
+  kn:
+    name: Kannada
+  kk:
+    name: Kazakh
+  rw:
+    name: Kinyarwanda
+  rn:
+    name: Kirundi
+  xx-klingon:
+    name: Klingon
+  kg:
+    name: Kongo
+  ko:
+    name: Korean
+    hablaa_code: kor
+  kri:
+    name: Krio (Sierra Leone)
+  ku:
+    name: Kurdish
+    hablaa_code: kur
+  ckb:
+    name: Kurdish (Soranî)
+  ky:
+    name: Kyrgyz
+  lo:
+    name: Laothian
+  la:
+    name: Latin
+    hablaa_code: lat
+  lv:
+    name: Latvian
+  ln:
+    name: Lingala
+  lt:
+    name: Lithuanian
+    hablaa_code: lit
+  loz:
+    name: Lozi
+  lg:
+    name: Luganda
+  ach:
+    name: Luo
+  mk:
+    name: Macedonian
+    hablaa_code: mkd
+  mg:
+    name: Malagasy
+    hablaa_code: mlg
+  ms:
+    name: Malay
+    hablaa_code: zsm
+  ml:
+    name: Malayalam
+    hablaa_code: mal
+  mt:
+    name: Maltese
+  mi:
+    name: Maori
+  mr:
+    name: Marathi
+  mfe:
+    name: Mauritian Creole
+  mo:
+    name: Moldavian
+  mn:
+    name: Mongolian
+  sr-ME:
+    name: Montenegrin
+  ne:
+    name: Nepali
+  pcm:
+    name: Nigerian Pidgin
+  nso:
+    name: Northern Sotho
+  'no':
+    name: Norwegian
+    hablaa_code: nor
+  nn:
+    name: Norwegian (Nynorsk)
+  oc:
+    name: Occitan
+  or:
+    name: Oriya
+  om:
+    name: Oromo
+  ps:
+    name: Pashto
+  fa:
+    name: Persian
+  xx-pirate:
+    name: Pirate
+  pl:
+    name: Polish
+    hablaa_code: pol
+  pt-BR:
+    name: Portuguese (Brazil)
+    hablaa_code: por
+  pt-PT:
+    name: Portuguese (Portugal)
+    hablaa_code: por
+  pa:
+    name: Punjabi
+  qu:
+    name: Quechua
+  ro:
+    name: Romanian
+    hablaa_code: ron
+  rm:
+    name: Romansh
+  nyn:
+    name: Runyakitara
+  ru:
+    name: Russian
+    hablaa_code: rus
+  gd:
+    name: Scots Gaelic
+  sr:
+    name: Serbian
+    hablaa_code: srp
+  sh:
+    name: Serbo-Croatian
+  st:
+    name: Sesotho
+  tn:
+    name: Setswana
+  crs:
+    name: Seychellois Creole
+  sn:
+    name: Shona
+  sd:
+    name: Sindhi
+  si:
+    name: Sinhalese
+  sk:
+    name: Slovak
+  sl:
+    name: Slovenian
+    hablaa_code: slv
+  so:
+    name: Somali
+  es:
+    name: Spanish
+    hablaa_code: spa
+  es-419:
+    name: Spanish (Latin American)
+    hablaa_code: spa
+  su:
+    name: Sundanese
+  sw:
+    name: Swahili
+  sv:
+    name: Swedish
+    hablaa_code: swe
+  tg:
+    name: Tajik
+  ta:
+    name: Tamil
+    hablaa_code: tam
+  tt:
+    name: Tatar
+    hablaa_code: tat
+  te:
+    name: Telugu
+    hablaa_code: tel
+  th:
+    name: Thai
+    hablaa_code: tha
+  ti:
+    name: Tigrinya
+  to:
+    name: Tonga
+  lua:
+    name: Tshiluba
+  tum:
+    name: Tumbuka
+  tr:
+    name: Turkish
+    hablaa_code: tur
+  tk:
+    name: Turkmen
+  tw:
+    name: Twi
+  ug:
+    name: Uighur
+  uk:
+    name: Ukrainian
+    hablaa_code: ukr
+  ur:
+    name: Urdu
+    hablaa_code: urd
+  uz:
+    name: Uzbek
+  vi:
+    name: Vietnamese
+    hablaa_code: vie
+  cy:
+    name: Welsh
+    hablaa_code: cym
+  wo:
+    name: Wolof
+  xh:
+    name: Xhosa
+  yi:
+    name: Yiddish
+  yo:
+    name: Yoruba
+  zu:
+    name: Zulu
+    hablaa_code: zul
+

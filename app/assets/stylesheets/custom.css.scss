@@ -1,0 +1,89 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar {
+  margin-bottom: 10px
+}
+.navbar-brand {
+  font-size: 150%;
+  padding-right: 5px;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+.container {
+  overflow:auto;
+  padding-bottom:150px; 
+}
+  
+.footer {
+  position: relative;
+  margin-top: -150px; 
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+}
+
+#flash-message { 
+  height: 40px; 
+  margin-bottom: 5px;
+  padding-top: 10px;
+}
+
+.alert {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+
+.form-control.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+}
+
+.form-control.input-inline-level {
+  display: inline;
+  width: 90%;
+  min-height: 28px;
+}
+
+.form-control.long {
+  display: inline;
+  width: 30%;
+  min-height: 28px;
+}
+
+.row {
+  padding-bottom: 10px;
+}
+
+span.auto-transl, span.auto-transl-all {
+  cursor: pointer;
+  color: #4B904B;
+  &:hover {
+    opacity: 0.5;
+  }
+  &[data-disabled="true"] {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+}
+
+span.transl-sign {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+textarea {
+  resize: horizontal;
+}

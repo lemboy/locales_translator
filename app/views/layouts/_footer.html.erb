@@ -1,0 +1,11 @@
+<footer class="footer">
+  <div class = "col-md-6">
+    This project on 
+    <%= link_to "GitHub", "http://github.com" %>
+  </div>
+  <div class = "col-md-6 text-right">
+    <% if !Translator.autotranslate_dirs.nil? %>
+      <%= content_tag(:div, link_to("Powered by Yandex.Translate", "http://translate.yandex.com/")) %>
+    <% end %>
+  </div>
+</footer>

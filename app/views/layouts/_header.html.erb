@@ -1,0 +1,28 @@
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+  	  <div class="navbar-header">
+        <div class="navbar-brand">Locales Translator</div>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <%= form_tag translators_upload_file_path, id: 'load-form', class: "navbar-form navbar-left", remote: true do %>
+          <div class="form-group">
+	        <%= file_field_tag "src_file", id: "src-file",  class: "filestyle", 'data-input' => 'false', 'data-badge' => 'false'  %>
+          </div>
+          <%= hidden_field_tag 'authenticity_token', form_authenticity_token %>
+          <%= submit_tag "Upload", id: "load-btn", disabled: true, style: "display: none;" %>
+        <% end %>
+
+          <% if !Translator.autotranslate_dirs.nil? %>
+	  	  <%= content_tag(:span, "MT enabled", title: "Mashine translation enabled", class: 'label label-success') %>
+		  <% else %>
+		    <%= content_tag(:span, "MT disabled", title: "Mashine translation disabled", class: 'label label-warning') %>
+	      <% end %>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
