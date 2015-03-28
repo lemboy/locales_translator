@@ -28,7 +28,7 @@ class TranslatorsController < ApplicationController
     respond_to do |format| 
       format.html do 
         trgt_lang_code = params[:trgt_lang]
-        trgt_hash = { trgt_lang_code => params[:trgt_hash].to_hash }
+        trgt_hash = { trgt_lang_code => params[:trgt_hash].to_hash.values[0] }
         trgt_file_name = ( params[:trgt_file_name].presence ? params[:trgt_file_name] : trgt_lang_code ) + ".yml"
         trgt_data = trgt_hash.to_yaml(options = {:line_width => -1})
         send_data trgt_data, :filename => trgt_file_name 
