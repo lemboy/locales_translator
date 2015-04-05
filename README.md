@@ -36,6 +36,7 @@ and run
 ```
 bundle exec rspec spec
 ```
+Most likely you will need to adjust the Selenium::WebDriver before. See at the end of *spec/rails_helper.rb* 
 
 Demo
 -------
