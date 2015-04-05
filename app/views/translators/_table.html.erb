@@ -25,7 +25,7 @@
 
           <% key_class = val[:is_group] ? "bg-info glyphicon glyphicon-minus-sign" : "bg-warning" %>
           <% transl_class = "inner glyphicon glyphicon-play-circle " + ( i == 0 ? "auto-transl-all" : "auto-transl") %>
-          <% transl_id = val[:is_group] ? "" : "auto-transl-#{i}" %>
+          <% transl_id = val[:is_group] ? (i == 0 ? "auto-transl-all" : "") : "auto-transl-#{i}" %>
           <% transl_title =  "Translate " + (i == 0 ? "all" : "this") %>
   
 					<span class="<%=key_class%>"> 

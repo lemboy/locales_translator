@@ -1,0 +1,11 @@
+---
+en:
+  animal:
+    fish:
+      crucian: "Сrucian"
+    bird:
+      sparrow: "Sparrow"
+  plant:
+    aspen: "Aspen"
+  fungus: "Fungus"
+        

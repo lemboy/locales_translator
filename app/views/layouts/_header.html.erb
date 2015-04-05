@@ -16,7 +16,7 @@
         <% end %>
 
           <% if !Translator.autotranslate_dirs.nil? %>
-	  	  <%= content_tag(:span, "MT enabled", title: "Mashine translation enabled", class: 'label label-success') %>
+	  	  <%= content_tag(:span, "* MT enabled", title: "* Mashine translation enabled", class: 'label label-success') %>
 		  <% else %>
 		    <%= content_tag(:span, "MT disabled", title: "Mashine translation disabled", class: 'label label-warning') %>
 	      <% end %>
