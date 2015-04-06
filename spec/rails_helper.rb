@@ -62,7 +62,7 @@ Capybara.register_driver :selenium do |app|
   profile.assume_untrusted_certificate_issuer = ENV['SKIP_CERT_ISSUER'].present?
   profile['browser.download.dir'] = File.join(Rails.root, "spec/fixtures/yml/download")
   profile['browser.download.folderList'] = 2 # implies custom location
-  profile['browser.helperApps.neverAsk.saveToDisk'] = "application/x-yaml, application/octet-stream"
+  profile['browser.helperApps.neverAsk.saveToDisk'] = "application/x-yaml, application/json, application/octet-stream"
   profile.native_events = true
   Capybara::Selenium::Driver.new(app, :browser => :firefox ,:profile => profile)
 end

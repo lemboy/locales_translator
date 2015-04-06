@@ -9,10 +9,18 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <%= form_tag translators_upload_file_path, id: 'load-form', class: "navbar-form navbar-left", remote: true do %>
           <div class="form-group">
-	        <%= file_field_tag "src_file", id: "src-file",  class: "filestyle", 'data-input' => 'false', 'data-badge' => 'false'  %>
+	        <%= file_field_tag "src_file", id: "src-file",  class: "filestyle", 'data-buttonText' => 'Upload file', 'data-input' => 'false', 'data-badge' => 'false'  %>
           </div>
           <%= hidden_field_tag 'authenticity_token', form_authenticity_token %>
           <%= submit_tag "Upload", id: "load-btn", disabled: true, style: "display: none;" %>
+        <% end %>
+
+        <%= form_tag translators_upload_draft_path, id: 'load-draft-form', class: "navbar-form navbar-left", remote: true do %>
+          <div class="form-group">
+	        <%= file_field_tag "draft_file", id: "draft-file",  class: "filestyle", 'data-buttonText' => 'Upload draft', 'data-input' => 'false', 'data-badge' => 'false'  %>
+          </div>
+          <%= hidden_field_tag 'authenticity_token', form_authenticity_token %>
+          <%= submit_tag "Upload", id: "load-draft-btn", disabled: true, style: "display: none;" %>
         <% end %>
 
           <% if !Translator.autotranslate_dirs.nil? %>

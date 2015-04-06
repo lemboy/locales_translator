@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'translators/ajax_download'
 
+  post 'translators/upload_draft'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

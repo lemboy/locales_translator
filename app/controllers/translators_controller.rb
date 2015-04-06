@@ -29,14 +29,46 @@ class TranslatorsController < ApplicationController
     end
   end
 
+  def upload_draft
+    src_file = params[:draft_file].tempfile
+    @src_file_name = params[:draft_file].original_filename
+    ajax_status = 200
+
+    begin
+      json_content = JSON.load File.new(src_file)
+      @src_content = json_content['source']
+      @trgt_content = json_content['target']
+    rescue JSON::ParserError => se
+      src_file.close
+      src_file.unlink
+      flash[:danger] = "Invalid syntax of JSON file: #{@src_file_name}"
+      ajax_status = 404
+    end
+
+    respond_to do |format|
+      format.js { render status: ajax_status }
+      format.html { redirect_to root_path }
+    end
+  end
+
   def process_file
     respond_to do |format| 
       format.html do 
-        trgt_lang_code = params[:trgt_lang]
-        trgt_hash = { trgt_lang_code => params[:trgt_hash].to_hash.values[0] }
-        trgt_file_name = ( params[:trgt_file_name].presence ? params[:trgt_file_name] : trgt_lang_code ) + ".yml"
-        trgt_data = trgt_hash.to_yaml(options = {:line_width => -1})
-        send_data trgt_data, :filename => trgt_file_name 
+        if params[:commit] == 'Save file'
+          trgt_lang_code = params[:trgt_lang]
+          trgt_hash = { trgt_lang_code => params[:trgt_hash].to_hash.values[0] }
+          trgt_file_name = ( params[:trgt_file_name].presence ? params[:trgt_file_name].gsub(/\.yml\Z/, '') : trgt_lang_code ) + ".yml"
+          trgt_data = trgt_hash.to_yaml(options = {:line_width => -1})
+          send_data trgt_data, :filename => trgt_file_name 
+        else
+          src_lang_code = params[:src_lang_code]
+          trgt_lang_code = params[:trgt_lang]
+          src_hash = { src_lang_code => params[:src_hash].to_hash.values[0] }
+          trgt_hash = { trgt_lang_code => params[:trgt_hash].to_hash.values[0] }
+          trgt_file_name = ( params[:trgt_file_name].presence ? params[:trgt_file_name].gsub(/\.json\Z/, '') : "#{src_lang_code}-#{trgt_lang_code}" ) + "-draft.json"
+          trgt_data = { 'source' => src_hash, 'target' => trgt_hash }.to_json
+          send_data trgt_data, :filename => trgt_file_name 
+        end
       end
       format.js do 
         src_hash = params[:src_array]

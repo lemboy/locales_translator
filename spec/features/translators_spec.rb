@@ -5,9 +5,12 @@ describe "translator" do
   let(:bad_file_path) { File.join(Rails.root,           'spec/fixtures/yml/incorrect_file.yml') }
   let(:trgt_custom_file_path) { File.join(Rails.root,   'spec/fixtures/yml/download/target_file.yml') }
   let(:trgt_default_file_path) { File.join(Rails.root,  'spec/fixtures/yml/download/fr.yml') }
-  let(:original_word)   { 'Сrucian' }
+  let(:draft_default_file_path) { File.join(Rails.root, 'spec/fixtures/yml/download/en-fr-draft.json') }
+  let(:draft_custom_file_path) { File.join(Rails.root,  'spec/fixtures/yml/download/target-draft.json') }
+  let(:original_word) { 'Сrucian' }
   let(:translated_word) { 'Carassin' }
   let(:another_translated_word) { 'Champignon' }
+  let(:draft_word) { 'Draft' }
 
   before { visit root_path }
 
@@ -31,6 +34,7 @@ describe "translator" do
     context "correct file" do
       before { attach_file 'src_file', src_file_path }
       it "should have correct fields value", js: true do
+        expect(find('.alert-info'))
         expect(find('input#src-lang').value).to have_content 'English'
         expect(find('select#trgt-lang').value).to have_content 'af'
         expect(find('textarea#src-array-3')).to have_content original_word
@@ -38,7 +42,7 @@ describe "translator" do
     end
   end      
 
-  shared_examples "save file shared" do
+  shared_examples "save target file shared" do
     before { attach_file 'src_file', src_file_path }
     before { find('textarea#trgt-array-3').set translated_word }
     before { find('select#trgt-lang').select 'French' }
@@ -53,20 +57,49 @@ describe "translator" do
 
   describe "after save file" do 
     context "with default name" do
-      it_behaves_like "save file shared" do
+      it_behaves_like "save target file shared" do
         let(:trgt_file_name) { '' }
         let(:trgt_file_path) { trgt_default_file_path }
       end
     end
     context "with custom name" do
-      it_behaves_like "save file shared" do
+      it_behaves_like "save target file shared" do
         let(:trgt_file_name) { 'target_file' }
         let(:trgt_file_path) { trgt_custom_file_path }
       end
     end
   end
 
-  describe "machine translation" do
+  shared_examples "save draft file shared" do
+    before { attach_file 'src_file', src_file_path }
+    before { find('textarea#trgt-array-3').set draft_word }
+    before { find('select#trgt-lang').select 'French' }
+    before { find('input#trgt-file-name').set trgt_file_name }
+    before { find_button('Save draft').click }            
+    before { attach_file 'draft_file', trgt_file_path }
+    it "should have translated word", js: true do
+      expect(find('input#src-lang').value).to have_content 'English'
+      expect(find('select#trgt-lang').value).to have_content 'fr'
+      expect(find('textarea#trgt-array-3')).to have_content draft_word
+    end
+  end
+
+  describe "after save draft file" do 
+    context "with default name" do
+      it_behaves_like "save draft file shared" do
+        let(:trgt_file_name) { '' }
+        let(:trgt_file_path) { draft_default_file_path }
+      end
+    end
+    context "with custom name" do
+      it_behaves_like "save draft file shared" do
+        let(:trgt_file_name) { 'target' }
+        let(:trgt_file_path) { draft_custom_file_path }
+      end
+    end
+  end
+
+  describe "with machine translation" do
     before { attach_file 'src_file', src_file_path }
     context "when select proper target language" do
       before { find('select#trgt-lang').select 'French' }
@@ -77,12 +110,14 @@ describe "translator" do
       context "can translate key" do
         before { find("span#auto-transl-3").click }
         it "properly", js: true do
+          expect(find('.alert-info'))
           expect(page).to have_field "trgt-array-3", with: translated_word 
         end
       end
       context "can translate all keys" do
         before { find("span#auto-transl-all").click }
         it "properly", js: true do
+          expect(find('.alert-info'))
           expect(page).to have_field "trgt-array-3", with: translated_word
           expect(page).to have_field "trgt-array-8", with: another_translated_word
         end

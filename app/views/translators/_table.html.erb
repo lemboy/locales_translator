@@ -2,17 +2,23 @@
 <% src_plain_content = plain_hash @src_content %>
 <% src_lang = "#{Translator.lang_name(src_lang_code)} (#{src_lang_code}) #{Translator.can_autotranslate?(src_lang_code) ? '*' : ''}"%>
 
+<% if defined? @trgt_content %>
+	<% trgt_lang_code, trgt_hash_content = @trgt_content.first %>
+	<% trgt_plain_content = plain_hash({src_lang_code => trgt_hash_content}) %>
+<% end %>
+
 <%= form_tag translators_process_file_path, id: "transl-form", class: "form-inline" do %>
 
 <div class="row">
-<div class="col-md-11 col-md-offset-1">
+<div class="col-md-12">
   <%= hidden_field_tag 'src_lang_code', src_lang_code, id: "src-lang-code" %>
   <%= text_field_tag 'src_file_name', @src_file_name, :readonly => true, class: "form-control" %>
   <%= text_field_tag 'src_lang', src_lang, id: "src-lang", :readonly => true, class: "form-control" %>
   <span class="glyphicon glyphicon-arrow-right transl-sign"></span> 
-  <%= select_tag 'trgt_lang', options_for_select(locales_list_with_mark(src_lang_code)), id: "trgt-lang", class: "form-control" %>
+  <%= select_tag 'trgt_lang', options_for_select(locales_list_with_mark(src_lang_code), trgt_lang_code), id: "trgt-lang", class: "form-control" %>
   <%= text_field_tag 'trgt_file_name', "", :placeholder => "_locale_.yml", id: "trgt-file-name", class: "form-control" %>
   <%= submit_tag "Save file", id: "submitSaveBtn", class: "btn btn-default" %>
+  <%= submit_tag "Save draft", id: "submitSaveDraftBtn", class: "btn btn-default" %>
 </div>
 </div>
 
@@ -35,8 +41,9 @@
 					  <% end %>
 					</span>
 
-          <%= text_area_tag( "src_array[#{i}]", value = val[:value], id: "src-array-#{i}", class: "form-control long", :readonly => true) if !val[:is_group] %>
-          <%= text_area_tag( "trgt_hash"+val[:path], value = "", id: "trgt-array-#{i}", class: "form-control long") if !val[:is_group] %>
+				  <%= hidden_field_tag "src_array[#{i}]", val[:value] %>
+          <%= text_area_tag( "src_hash"+val[:path], value = val[:value], id: "src-array-#{i}", class: "form-control long", :readonly => true) if !val[:is_group] %>
+          <%= text_area_tag( "trgt_hash"+val[:path], value = (defined?(@trgt_content) ? trgt_plain_content[key][:value] : ""), id: "trgt-array-#{i}", class: "form-control long") if !val[:is_group] %>
 
           <%= val[:is_group] ? "<ul>".html_safe : "</li>".html_safe %>
           <%= ("</ul></li>"*(val[:level]-1)).html_safe if i == (src_plain_content.size - 1) %>

@@ -23,6 +23,10 @@ $( document ).ready( function() {
   $( document ).on( 'change', '#src-file',  function() {
     $( "#load-form" ).submit();
   });
+
+  $( document ).on( 'change', '#draft-file',  function() {
+    $( "#load-draft-form" ).submit();
+  });
   
   $( document ).on( 'click', '.auto-transl',  function(event) {
     var translateIt = true;
