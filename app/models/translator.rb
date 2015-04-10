@@ -12,7 +12,7 @@ class Translator < ActiveRecord::Base
   end
 
   def self.request_size_ok? request_url
-    (request_url.bytesize.to_f/1024)<10
+    (request_url.bytesize.to_f/1024)<10 # limit 10kB in Yandex.Translate API
   end
 
   def self.set_autotranslate_dirs
