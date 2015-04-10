@@ -16,4 +16,4 @@
 !/log/.keep
 /tmp
 
-/config/secrets.yml
+/config/app_environment_variables.rb
