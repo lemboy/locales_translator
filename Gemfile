@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass'
 gem 'rails_12factor'
+gem "js-routes"
+gem "select2-rails"
 
 group :development, :test do
   gem 'byebug'
@@ -29,4 +31,3 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
 end
-

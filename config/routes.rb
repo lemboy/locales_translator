@@ -5,14 +5,13 @@ Rails.application.routes.draw do
   get 'translators/index'
 
   post 'translators/upload_file'
+  post 'translators/upload_draft'
 
-  post 'translators/process_file'
+  post 'translators/save_file'
+  post 'translators/save_draft'
 
   get 'translators/translate'
-
-  get 'translators/ajax_download'
-
-  post 'translators/upload_draft'
+  post 'translators/translate_all'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

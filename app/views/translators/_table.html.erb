@@ -7,49 +7,57 @@
 	<% trgt_plain_content = plain_hash({src_lang_code => trgt_hash_content}) %>
 <% end %>
 
-<%= form_tag translators_process_file_path, id: "transl-form", class: "form-inline" do %>
+<%= form_tag translators_save_file_path, id: "transl-form", class: "form-inline" do %>
+	<div class="row" >
+		<%= render 'upload_button' %>
+	  <%= hidden_field_tag 'src_lang_code', src_lang_code, id: "src-lang-code" %>
+	  <%= text_field_tag 'src_file_name', @src_file_name, :readonly => true, class: "form-control", title: "Source file" %>
+	  <%= text_field_tag 'src_lang', src_lang, id: "src-lang", :readonly => true, class: "form-control", title: "Source language" %>
+	  <span class="glyphicon glyphicon-arrow-right transl-sign"></span> 
+	  <%= select_tag 'trgt_lang', options_for_select(locales_list_with_mark(src_lang_code), trgt_lang_code), id: "trgt-lang", class: "select2 form-control inline-block", title: "Target language" %>
+	  <%= text_field_tag 'trgt_file_name', "", :placeholder => "_locale_.yml", id: "trgt-file-name", class: "form-control", title: "Target file" %>
+	
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" id="save-button" data-toggle="dropdown" aria-expanded="false" title="Save file">
+		    <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu upload-save" role="menu">
+		    <li><a href="" id="save-locale" title="Save locale (yml)">Locale</a>​</li>
+		    <li><a href="" id="save-draft" title="Save draft (json)">Draft</a>​</li>
+		  </ul>
+		</div>
+	</div>
 
-<div class="row">
-<div class="col-md-12">
-  <%= hidden_field_tag 'src_lang_code', src_lang_code, id: "src-lang-code" %>
-  <%= text_field_tag 'src_file_name', @src_file_name, :readonly => true, class: "form-control" %>
-  <%= text_field_tag 'src_lang', src_lang, id: "src-lang", :readonly => true, class: "form-control" %>
-  <span class="glyphicon glyphicon-arrow-right transl-sign"></span> 
-  <%= select_tag 'trgt_lang', options_for_select(locales_list_with_mark(src_lang_code), trgt_lang_code), id: "trgt-lang", class: "form-control" %>
-  <%= text_field_tag 'trgt_file_name', "", :placeholder => "_locale_.yml", id: "trgt-file-name", class: "form-control" %>
-  <%= submit_tag "Save file", id: "submitSaveBtn", class: "btn btn-default" %>
-  <%= submit_tag "Save draft", id: "submitSaveDraftBtn", class: "btn btn-default" %>
-</div>
-</div>
-
-  <div class="tree">
-    <% prev_level = -1 %>
-    <ul>
-      <% src_plain_content.each_with_index do |(key, val), i| %>
-        <%= ("</ul>"*(prev_level-val[:level])).html_safe if val[:level] < prev_level %>
-        <li>
-
-          <% key_class = val[:is_group] ? "bg-info glyphicon glyphicon-minus-sign" : "bg-warning" %>
-          <% transl_class = "inner glyphicon glyphicon-play-circle " + ( i == 0 ? "auto-transl-all" : "auto-transl") %>
-          <% transl_id = val[:is_group] ? (i == 0 ? "auto-transl-all" : "") : "auto-transl-#{i}" %>
-          <% transl_title =  "Translate " + (i == 0 ? "all" : "this") %>
-  
-					<span class="<%=key_class%>"> 
-					  <%=val[:key]%> 
-					  <% if !val[:is_group] || i == 0 %>
-					    <span class="<%=transl_class%>" title="<%=transl_title%>" id="<%=transl_id%>"></span>
-					  <% end %>
-					</span>
-
-				  <%= hidden_field_tag "src_array[#{i}]", val[:value] %>
-          <%= text_area_tag( "src_hash"+val[:path], value = val[:value], id: "src-array-#{i}", class: "form-control long", :readonly => true) if !val[:is_group] %>
-          <%= text_area_tag( "trgt_hash"+val[:path], value = (defined?(@trgt_content) ? trgt_plain_content[key][:value] : ""), id: "trgt-array-#{i}", class: "form-control long") if !val[:is_group] %>
-
-          <%= val[:is_group] ? "<ul>".html_safe : "</li>".html_safe %>
-          <%= ("</ul></li>"*(val[:level]-1)).html_safe if i == (src_plain_content.size - 1) %>
-
-          <% prev_level = val[:level] %>
-      <% end %>
-    </ul>
-  </div>
+	<div class="row" >
+	  <div class="tree">
+	    <% prev_level = -1 %>
+	    <ul>
+	      <% src_plain_content.each_with_index do |(key, val), i| %>
+	        <%= ("</ul>"*(prev_level-val[:level])).html_safe if val[:level] < prev_level %>
+	        <li>
+	
+	          <% key_class = val[:is_group] ? "bg-info glyphicon glyphicon-minus-sign" : "bg-warning" %>
+	          <% transl_class = "inner glyphicon glyphicon-play-circle " + ( i == 0 ? "auto-transl-all" : "auto-transl") %>
+	          <% transl_id = val[:is_group] ? (i == 0 ? "auto-transl-all" : "") : "auto-transl-#{i}" %>
+	          <% transl_title =  "Translate " + (i == 0 ? "all" : "this") %>
+	  
+						<span class="<%=key_class%>"> 
+						  <%=val[:key]%> 
+						  <% if !val[:is_group] || i == 0 %>
+						    <span class="<%=transl_class%>" title="<%=transl_title%>" id="<%=transl_id%>"></span>
+						  <% end %>
+						</span>
+	
+					  <%= hidden_field_tag "src_array[#{i}]", val[:value] %>
+	          <%= text_area_tag( "src_hash"+val[:path], value = val[:value], id: "src-array-#{i}", class: "form-control long", :readonly => true) if !val[:is_group] %>
+	          <%= text_area_tag( "trgt_hash"+val[:path], value = (defined?(@trgt_content) ? trgt_plain_content[key][:value] : ""), id: "trgt-array-#{i}", class: "form-control long") if !val[:is_group] %>
+	
+	          <%= val[:is_group] ? "<ul>".html_safe : "</li>".html_safe %>
+	          <%= ("</ul></li>"*(val[:level]-1)).html_safe if i == (src_plain_content.size - 1) %>
+	
+	          <% prev_level = val[:level] %>
+	      <% end %>
+	    </ul>
+	  </div>
+	</div>
 <% end %>

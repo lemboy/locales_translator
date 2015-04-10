@@ -15,6 +15,11 @@ html, body {
   height:100%;
 }
 
+.dropdown-menu.upload-save {
+  min-width: 100px;
+  line-height: 0;
+}
+
 #wrap {
   min-height: 100%;
 }
@@ -33,10 +38,14 @@ html, body {
 }
 
 #flash-message { 
-  height: 40px; 
+  height: 50px; 
   margin-bottom: 5px;
-  padding-top: 10px;
+  padding-top: 15px;
   padding-left: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .alert {
@@ -61,6 +70,11 @@ html, body {
   display: inline;
   width: 30%;
   min-height: 28px;
+}
+
+.select2-container.form-control.inline-block {
+  display: inline-block;
+  margin-right: 3px;
 }
 
 .row {

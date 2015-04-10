@@ -1,5 +1,6 @@
 <% if remotipart_submitted? %>
   <% if flash[:danger].nil? %>
+    $( '#upload-button' ).html( "<%= j "" %>" )
     $( '#transl-table' ).html( "<%= j "#{render 'table'}" %>" )
   <% end %>
 <% else %>

@@ -53,6 +53,7 @@ RSpec.configure do |config|
   config.after(:suite) do
     FileUtils.rm_rf(Dir[File.join(Rails.root, "spec/fixtures/yml/download")])
   end
+
 end
 
 Capybara.register_driver :selenium do |app|
