@@ -42,3 +42,8 @@ Demo
 -------
 
 Demo app is [here](http://locales-translator.herokuapp.com/)
+
+Thanks
+-------
+
+"Bootstrap-styled tree widget" from [here](http://jsfiddle.net/umutc1/eyf9q87c/).
