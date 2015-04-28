@@ -12,4 +12,59 @@ function treeView () {
         }
         e.stopPropagation();
     });
+	buttonCheckbox();
+};
+
+function buttonCheckbox() {
+  // Settings
+  var 
+  	$widget = $('#button-checkbox'),
+    $button = $widget.find('button'),
+    $checkbox = $widget.find('input:checkbox'),
+    $span = $widget.find('span'),
+    $control = $('.tree .form-control'),
+    settings = {
+      on: {
+        icon: 'glyphicon glyphicon-align-left',
+        widthClass : 'form-control full-width'
+      },
+      off: {
+        icon: 'glyphicon glyphicon-align-justify',
+        widthClass : 'form-control long'
+      }
+    };
+
+  // Event Handlers
+  $button.on('click', function () {
+    $checkbox.prop('checked', !$checkbox.is(':checked'));
+    $checkbox.triggerHandler('change');
+    updateDisplay();
+  });
+  $checkbox.on('change', function () {
+    updateDisplay();
+  });
+
+  // Actions
+  function updateDisplay() {
+    var isChecked = $checkbox.is(':checked');
+
+    // Set the button's state
+    $button.data('state', (isChecked) ? "on" : "off");
+
+    // Set the button's icon
+    $span
+      .removeClass()
+      .addClass(settings[$button.data('state')].icon);
+
+    $control
+      .removeClass()
+      .addClass(settings[$button.data('state')].widthClass);
+
+  }
+
+  // Initialization
+  function init() {
+    updateDisplay();
+  }
+  init();
 };

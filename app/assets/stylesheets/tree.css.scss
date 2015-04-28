@@ -1,6 +1,6 @@
 .tree {
     min-height:20px;
-    padding:19px;
+    padding:5px;
     margin-bottom:20px;
     background-color:#fbfbfb;
     border:1px solid #999;
@@ -9,13 +9,13 @@
     border-radius:4px;
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
     -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05)
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 .tree li {
     list-style-type:none;
     margin:0;
     padding:10px 5px 0 5px;
-    position:relative
+    position:relative;
 }
 .tree li::before, .tree li::after {
     content:'';
@@ -70,3 +70,13 @@
     border:0px;
 }
 
+.tree #button-checkbox>.btn {
+  background: #fff;
+  &:hover {
+    cursor: default;
+    background: #fff;
+  }
+  &:focus {
+    outline: none;
+  }
+}

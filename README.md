@@ -1,6 +1,8 @@
 Locales Translator
 ===================
 
+Now we have "re-do" of this Translator - [Locales-translator2](https://github.com/lemboy/locales_translator2)
+
 Translator for RoR locale YML files with machine translation ability (Yandex API).
 
 

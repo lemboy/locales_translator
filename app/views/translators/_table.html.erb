@@ -30,6 +30,16 @@
 
 	<div class="row" >
 	  <div class="tree">
+	
+			<div class="action_buttons_header" style="text-align: right;">
+				<span id="button-checkbox">
+					<button type="button" class="btn btn-default" aria-label="Left Align" title='Toggle view'>
+					  <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+					</button>
+				  <input type="checkbox" class="hidden" />
+				</span>
+			</div>
+			
 	    <% prev_level = -1 %>
 	    <ul>
 	      <% src_plain_content.each_with_index do |(key, val), i| %>
